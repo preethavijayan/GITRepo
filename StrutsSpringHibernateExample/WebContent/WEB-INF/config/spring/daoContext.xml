@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<import resource="classpath:WEB-INF/config/spring/datasourceContext.xml" />
+
+	  <bean id="registrationDao"
+		class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<value>com.example.dao.RegistrationDao</value>
+		</property>
+		<property name="target">
+			<ref bean="registrationDaoImpl" />
+		</property>
+	</bean>
+
+	<bean id="registrationDaoImpl"
+		class="com.example.daoimpl.RegistrationDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>  
+</beans>

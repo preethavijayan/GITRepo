@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+<class name="com.example.dto.LoginDto"
+		table="LOGINTABLE">
+		<id name="loginId" type="java.lang.Long" column="LOGINID">
+		 <generator class="foreign">
+		<param name="property">registrationDto</param>
+		</generator>
+       </id>
+		
+		<property name="userName" type="java.lang.String">
+			<column name="USERID" not-null="true" />
+		</property>
+		
+		<property name="password" type="java.lang.String">
+			<column name="PASSWORD" />
+		</property>
+		
+		<one-to-one name="registrationDto" class="com.example.dto.RegistrationDto" constrained="true" />
+		
+	</class>
+
+		<query name="userAuthentication">
+			<![CDATA[from LoginDto where userName = ?  and password = ?]]>
+		</query>
+		
+		
+</hibernate-mapping>

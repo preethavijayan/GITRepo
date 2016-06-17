@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans default-autowire="byName">
+	<!-- BAse Project  -->
+	<import resource="classpath:WEB-INF/config/spring/datasourceContext.xml" />
+	<import resource="classpath:WEB-INF/config/spring/delegateContext.xml" />
+	<import resource="classpath:WEB-INF/config/spring/serviceContext.xml" />
+	<import resource="classpath:WEB-INF/config/spring/daoContext.xml" />
+
+
+	<bean name="/registration"
+		class="com.example.action.RegistrationAction">
+	 	<property name="registrationDelegate">
+			<ref bean="registrationDelegate" />
+		</property>
+	</bean>
+	
+	<bean name="/login"
+		class="com.example.action.RegistrationAction">
+	 	<property name="registrationDelegate">
+			<ref bean="registrationDelegate" />
+		</property>
+	</bean>
+	
+
+</beans>

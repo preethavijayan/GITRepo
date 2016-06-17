@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<!-- 
+	Spring configuration for Delegate layer.
+	
+	Interfaces are defined for the Delegate layer and the implementing Delegate
+	class beans are configured here. 
+	
+	This config file uses some Spring 2.0 features and therefore the Spring DTD 
+	is replaced by the default beans schema and the util schema.	
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+	 
+	<bean id="registrationDelegate"
+		class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<value>com.example.delegate.RegistrationDelegate</value>
+		</property>
+		<property name="target">
+			<ref bean="registrationDelegateImpl" />
+		</property>
+
+	</bean>
+
+	<bean id="registrationDelegateImpl"
+		class="com.example.delegateimpl.RegistrationDelegateImpl">
+		<property name="registrationService">
+			<ref bean="registrationService" />
+		</property>
+	</bean>  
+</beans>

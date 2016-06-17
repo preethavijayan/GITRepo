@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config> 
+  <form-beans> 
+    
+   
+    <form-bean type="com.example.form.RegistrationForm" name="registrationForm"/>
+    
+    
+  </form-beans> 
+  <global-exceptions> 
+   
+  </global-exceptions> 
+  <global-forwards> 
+  
+  </global-forwards> 
+  <action-mappings> 
+  
+  
+  
+  
+  <action path="/registration" name="registrationForm"  
+            type="org.springframework.web.struts.DelegatingActionProxy" 
+            parameter="registerAction" scope="request"
+            validate="true" input="/registration.jsp"> 
+      <forward name="success" path="/success.jsp"/> 
+      <forward name="failure" path="/error.jsp"/> 
+      
+   </action> 
+   
+   <action path="/login" name="registrationForm"  
+            type="org.springframework.web.struts.DelegatingActionProxy" 
+            parameter="loginAction" scope="request"
+            validate="false" input="/login.jsp"> 
+      <forward name="success" path="/success.jsp"/> 
+      <forward name="failure" path="/error.jsp"/> 
+   </action> 
+   
+   
+    
+    
+    
+  </action-mappings> 
+  
+  <message-resources parameter="WEB-INF/MessageResources" />
+
+	
+
+	<!--  Validator plugin -->
+
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+			value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml" />
+	</plug-in>
+  
+</struts-config>
